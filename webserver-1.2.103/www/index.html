@@ -1,54 +1,88 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
-    <title>Cherokee Test Page</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style type="text/css">
-        body {
-            margin: 0;
-            background: #fff url(images/default-bg.png) center center repeat-y
-        }
-        
-        #contents {
-            background: #fff url(images/cherokee-logo.png) top center no-repeat;
-            margin: auto;
-            text-align: center;
-            width: 551px;
-            max-width: 551px;
-            border: 1px solid #fff;
-        }
-
-        .message {
-            font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
-            background-color: #c00;
-            color: #fff;
-            padding: 10px;
-            margin-top: 220px;
-            font-size: 120%;
-            text-align: left;
-        }
-
-        code {
-            font-weight: bold;
-        }
-
-        .powered {
-            margin: 20px;
-            text-align: center;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="cherokee-monitor-api" content="/api/monitor">
+    <title>مراقبة خادم Cherokee</title>
+    <link rel="stylesheet" href="css/cherokee.css">
+    <script src="js/cherokee.js" defer></script>
 </head>
 <body>
-    <div id="contents">
-        <div class="message">
-            <p>This page is used to test the proper operation of the Cherokee Web Server after it has been installed. If you can read this page, it means that the Cherokee Web Server installed at this site is working properly.</p>
+    <header class="topbar">
+        <a class="wordmark" href="./" aria-label="الصفحة الرئيسية لخادم Cherokee">
+            <span class="wordmark-mark" aria-hidden="true">C</span>
+            <span>Cherokee<span class="wordmark-light"> / مراقبة الخادم</span></span>
+        </a>
+        <span class="topbar-label">لوحة النظام</span>
+    </header>
 
-            <p><strong>Note:</strong> If you see this page after uploading site content you probably have not replaced the <code>index.html</code> file.</p>
-        </div>
-    </div>
-    <div class="powered">
-    <a href="http://www.cherokee-project.com"><img src="images/powered_by_cherokee.png" alt="Powered by Cherokee" border="0" /></a>
-    </div>
+    <main>
+        <section class="intro" aria-labelledby="page-title">
+            <p class="eyebrow"><span id="monitor-dot" class="status-dot" aria-hidden="true"></span> مراقبة مباشرة</p>
+            <h1 id="page-title">حالة <span>الخادم</span></h1>
+            <p class="intro-copy">تُعرض القياسات عند اتصال واجهة مراقبة موثوقة. لا تستطيع صفحة الويب قراءة موارد النظام أو فحص المنافذ بمفردها.</p>
+        </section>
 
+        <section class="monitor-panel" aria-labelledby="monitor-title">
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">حالة جمع البيانات</p>
+                    <h2 id="monitor-title" role="status" aria-live="polite">بانتظار واجهة المراقبة</h2>
+                </div>
+                <button id="refresh-button" type="button">
+                    <span>تحديث القياسات</span>
+                    <span class="button-arrow" aria-hidden="true">&#8635;</span>
+                </button>
+            </div>
+            <p id="monitor-message" class="monitor-message">لا توجد واجهة قياس مهيأة. لن تُعرض بيانات افتراضية.</p>
+        </section>
+
+        <section class="monitor-grid" aria-label="مؤشرات النظام">
+            <article class="metric-card">
+                <div class="metric-heading"><span class="metric-index">01</span><h2>ذاكرة RAM</h2></div>
+                <p id="ram-value" class="metric-value">غير متاح</p>
+                <div class="meter" role="progressbar" aria-label="استخدام الذاكرة" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="ram-meter"></span></div>
+                <p id="ram-detail" class="metric-detail">بانتظار بيانات الخادم</p>
+            </div>
+
+            <article class="metric-card">
+                <div class="metric-heading"><span class="metric-index">02</span><h2>القرص الصلب</h2></div>
+                <p id="disk-value" class="metric-value">غير متاح</p>
+                <div class="meter" role="progressbar" aria-label="استخدام القرص" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="disk-meter"></span></div>
+                <p id="disk-detail" class="metric-detail">بانتظار بيانات الخادم</p>
+            </div>
+
+            <article class="metric-card">
+                <div class="metric-heading"><span class="metric-index">03</span><h2>اتصال الإنترنت</h2></div>
+                <p id="internet-value" class="metric-value">غير متاح</p>
+                <p id="internet-detail" class="metric-detail">بانتظار بيانات الخادم</p>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-heading"><span class="metric-index">04</span><h2>محولات Ethernet</h2></div>
+                <p id="ethernet-value" class="metric-value">غير متاح</p>
+                <p id="ethernet-detail" class="metric-detail">بانتظار بيانات الخادم</p>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-heading"><span class="metric-index">05</span><h2>المنافذ المفتوحة</h2></div>
+                <p id="ports-value" class="metric-value">غير متاح</p>
+                <p id="ports-detail" class="metric-detail">بانتظار بيانات الخادم</p>
+            </article>
+
+            <article class="metric-card">
+                <div class="metric-heading"><span class="metric-index">06</span><h2>مؤشرات المنافذ المشبوهة</h2></div>
+                <p id="backdoor-value" class="metric-value">غير متاح</p>
+                <p id="backdoor-detail" class="metric-detail">الفحص الأمني يحتاج خدمة خلفية موثوقة</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>خادم Cherokee</span>
+        <span>آخر تحديث: <time id="updated-at">لم يتم الاتصال</time></span>
+    </footer>
 </body>
 </html>

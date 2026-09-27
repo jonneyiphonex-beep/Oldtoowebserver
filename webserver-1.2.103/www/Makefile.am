@@ -1,6 +1,8 @@
 ## Cherokee: Makefile.am  -*- makefile -*-
 
 cherokeewwwdir = "@WWW_ROOT@"
+cherokeewwwcssdir = "@WWW_ROOT@/css"
+cherokeewwwjsdir = "@WWW_ROOT@/js"
 
 cherokeewwwimagesdir = "@WWW_ROOT@/images"
 cherokeewwwimages_DATA = \
@@ -8,6 +10,9 @@ favicon.ico \
 default-bg.png \
 cherokee-logo.png \
 powered_by_cherokee.png
+
+cherokeewwwcss_DATA = css/cherokee.css
+cherokeewwwjs_DATA = js/cherokee.js
 
 HTMLS = \
 index.html
@@ -29,4 +34,6 @@ uninstall-local:
 
 EXTRA_DIST = \
 $(HTMLS) \
+$(cherokeewwwcss_DATA) \
+$(cherokeewwwjs_DATA) \
 $(cherokeewwwimages_DATA)
